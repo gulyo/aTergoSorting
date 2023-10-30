@@ -3,6 +3,7 @@ package main
 import (
 	"encoding/json"
 	"fmt"
+	"os"
 )
 
 type Literal struct {
@@ -20,4 +21,13 @@ func unmarshallAbc(jsonInput []byte) Literal {
 	}
 
 	return abc
+}
+
+func readAbc(location string) Literal {
+	abcFile, err := os.ReadFile(location)
+	if err != nil {
+		fmt.Println(err)
+		return Literal{Weight: []float32{0}}
+	}
+	return unmarshallAbc(abcFile)
 }

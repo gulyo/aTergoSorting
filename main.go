@@ -7,18 +7,14 @@ import (
 
 func main() {
 
-	abcFile, err := os.ReadFile("./resource/abc_hun_extended.json")
-	if err != nil {
-		fmt.Println(err)
-		return
+	abc := readAbc(os.Args[1])
+
+	for words := range readNames(os.Args[2]) {
+		for _, word := range words {
+			result := word.CalculateWeights(&abc)
+
+			fmt.Println(*result.word, " -> ", *result.weights)
+		}
+		fmt.Println(*words)
 	}
-
-	abc := unmarshallAbc(abcFile)
-
-	var word Word = "Hellyóka"
-
-	result := word.CalculateWeights(&abc)
-
-	fmt.Println(*result.word, " -> ", *result.weights)
-
 }
