@@ -1,20 +1,14 @@
 package main
 
-import (
-	"fmt"
-	"os"
-)
+import "fmt"
 
 func main() {
 
-	abc := readAbc(os.Args[1])
+	var container [][]WordWeight = sortedParts()
 
-	for words := range readNames(os.Args[2]) {
-		for _, word := range words {
-			result := word.CalculateWeights(&abc)
+	var result []WordWeight = combineParts(container)
 
-			fmt.Println(*result.word, " -> ", *result.weights)
-		}
-		fmt.Println(*words)
+	for _, weighted := range result {
+		fmt.Println(weighted)
 	}
 }

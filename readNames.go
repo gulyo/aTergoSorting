@@ -6,10 +6,8 @@ import (
 	"os"
 )
 
-const ChunkCount int = 11
-
-func readNames(location string) chan *[ChunkCount]Word {
-	channel := make(chan *[ChunkCount]Word)
+func readNames(location string) chan [ChunkCount]Word {
+	channel := make(chan [ChunkCount]Word)
 
 	names, err := os.Open(location)
 	if err != nil {
@@ -38,7 +36,7 @@ func readNames(location string) chan *[ChunkCount]Word {
 				i++
 				hasText = nameScanner.Scan()
 			}
-			channel <- &chunk
+			channel <- chunk
 		}
 		close(channel)
 		fmt.Println("Channel closed")
