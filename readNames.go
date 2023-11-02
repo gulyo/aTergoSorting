@@ -12,8 +12,7 @@ func readNames(location string) chan [ChunkCount]Word {
 	names, err := os.Open(location)
 	if err != nil {
 		fmt.Println("Could open names file")
-		fmt.Println(err.Error())
-		return nil
+		panic(err.Error())
 	}
 	defer func(file *os.File) {
 		err := file.Close()

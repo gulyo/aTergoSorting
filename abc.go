@@ -26,8 +26,8 @@ func unmarshallAbc(jsonInput []byte) Literal {
 func readAbc(location string) Literal {
 	abcFile, err := os.ReadFile(location)
 	if err != nil {
-		fmt.Println(err)
-		return Literal{Weight: []float32{0}}
+		fmt.Println(err.Error())
+		panic(err.Error())
 	}
 	return unmarshallAbc(abcFile)
 }
