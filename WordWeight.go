@@ -1,8 +1,11 @@
 package main
 
+import "strings"
+
 type WordWeight struct {
 	word    Word
 	weights []float32
+	missing []string
 }
 
 func (actual WordWeight) lessThan(wordB WordWeight) bool {
@@ -32,5 +35,5 @@ func (actual WordWeight) lessThan(wordB WordWeight) bool {
 }
 
 func (actual WordWeight) String() string {
-	return string(actual.word)
+	return string(actual.word) + "," + strings.Join(actual.missing, " ")
 }

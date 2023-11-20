@@ -9,6 +9,8 @@ type WeightsArg struct {
 	index      int
 	literal    *Literal
 	result     []float32
+	missing    []string
+	multiCheck bool
 }
 
 func weight(arg WeightsArg) WeightsArg {
@@ -26,6 +28,8 @@ func weight(arg WeightsArg) WeightsArg {
 			index:      arg.index + 1,
 			literal:    &literal,
 			result:     arg.result,
+			missing:    arg.missing,
+			multiCheck: true,
 		})
 		if multiCharacterResult.characters != nil {
 			return multiCharacterResult
@@ -39,23 +43,39 @@ func weight(arg WeightsArg) WeightsArg {
 			index:      arg.index + 1,
 			literal:    arg.literal,
 			result:     res,
+			missing:    arg.missing,
+			multiCheck: false,
 		}
 
+	} else {
+		if arg.multiCheck {
+			return WeightsArg{}
+		} else {
+			return WeightsArg{
+				characters: arg.characters,
+				index:      arg.index + 1,
+				literal:    arg.literal,
+				result:     arg.result,
+				missing:    append(arg.missing, arg.characters[arg.index]),
+				multiCheck: false,
+			}
+		}
 	}
-	return WeightsArg{}
 }
 
 func (a Word) CalculateWeights(abc *Literal) WordWeight {
 	result := WordWeight{word: a}
 
-	var characters []string = strings.Split(strings.ToUpper(string(a)), "")
+	var characters = strings.Split(strings.ToUpper(string(a)), "")
 
-	var i int = 0
-	var arg WeightsArg = WeightsArg{
+	var i = 0
+	var arg = WeightsArg{
 		characters: characters,
 		index:      i,
 		literal:    abc,
 		result:     []float32{},
+		missing:    []string{},
+		multiCheck: false,
 	}
 	for i < len(characters) {
 		arg = weight(arg)
@@ -64,5 +84,9 @@ func (a Word) CalculateWeights(abc *Literal) WordWeight {
 	}
 	result.weights = arg.result
 
-	return result
+	return WordWeight{
+		word:    a,
+		weights: arg.result,
+		missing: arg.missing,
+	}
 }

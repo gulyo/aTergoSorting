@@ -1,14 +1,20 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"os"
+)
 
 func main() {
+	var container *[]*[]WordWeight = sortedParts()
 
-	var container [][]WordWeight = sortedParts()
+	var result *[]WordWeight = combineParts(container)
 
-	var result []WordWeight = combineParts(container)
-
-	for _, weighted := range result {
-		fmt.Println(weighted)
+	if os.Args[3] != "" {
+		writeResult(result)
+	} else {
+		for _, weighted := range *result {
+			fmt.Println(weighted)
+		}
 	}
 }
