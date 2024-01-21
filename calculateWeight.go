@@ -66,7 +66,7 @@ func weight(arg WeightsArg) WeightsArg {
 func (a Word) CalculateWeights(abc *Literal) WordWeight {
 	result := WordWeight{word: a}
 
-	var characters = strings.Split(strings.ToUpper(string(a)), "")
+	var characters = strings.Split(strings.ToUpper(string(a.text)), "")
 
 	var i = 0
 	var arg = WeightsArg{

@@ -1,3 +1,6 @@
 package main
 
-type Word string
+type Word struct {
+	index int
+	text  string
+}

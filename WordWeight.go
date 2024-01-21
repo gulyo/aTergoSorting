@@ -1,9 +1,13 @@
 package main
 
-import "strings"
+import (
+	"strconv"
+	"strings"
+)
 
 type WordWeight struct {
 	word    Word
+	symbols []string
 	weights []float32
 	missing []string
 }
@@ -35,5 +39,7 @@ func (actual WordWeight) lessThan(wordB WordWeight) bool {
 }
 
 func (actual WordWeight) String() string {
-	return string(actual.word) + "," + strings.Join(actual.missing, " ")
+	return strconv.Itoa(actual.word.index) + " " +
+		string(actual.word.text) + "," +
+		strings.Join(actual.missing, "|")
 }

@@ -10,6 +10,7 @@ func sortedParts() *[]*[]WordWeight {
 	var container []*[]WordWeight
 	abc := readAbc(os.Args[1])
 	var wg sync.WaitGroup
+
 	for w := range readNames(os.Args[2]) {
 		wg.Add(1)
 		go func(words *[]Word) {
@@ -17,7 +18,7 @@ func sortedParts() *[]*[]WordWeight {
 
 			var result []WordWeight
 			for _, word := range *words {
-				if word != "" {
+				if word.text != "" {
 					result = append(result, word.CalculateWeights(&abc))
 				}
 			}
