@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func readNames(location string) chan *[]Word {
@@ -24,7 +25,9 @@ func readNames(location string) chan *[]Word {
 			var i int = 0
 			var chunk []Word
 			for hasText && (i < ChunkCount) {
-				chunk = append(chunk, Word{index: rowIndex, text: nameScanner.Text()})
+				newWord := Word{index: rowIndex, text: strings.TrimSpace(nameScanner.Text())}
+				PrintWidthWord = max(PrintWidthWord, len(newWord.text))
+				chunk = append(chunk, newWord)
 				rowIndex++
 				i++
 				hasText = nameScanner.Scan()

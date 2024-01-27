@@ -1,9 +1,13 @@
 package main
 
 import (
+	"fmt"
 	"strconv"
 	"strings"
 )
+
+var PrintWidthWord int = 8
+var PrintWidthRowNum int = 8
 
 type WordWeight struct {
 	word    Word
@@ -39,7 +43,12 @@ func (actual WordWeight) lessThan(wordB WordWeight) bool {
 }
 
 func (actual WordWeight) String() string {
-	return strconv.Itoa(actual.word.index) + " " +
-		string(actual.word.text) + "," +
+	var weightPrint []string = make([]string, len(actual.weights))
+	for i := range actual.weights {
+		weightPrint[i] = fmt.Sprintf("%.0f", actual.weights[i])
+	}
+	return fmt.Sprintf("%"+strconv.Itoa(PrintWidthRowNum)+"d", actual.word.index) + "," +
+		fmt.Sprintf("%"+strconv.Itoa(PrintWidthWord)+"s", string(actual.word.text)) + "," +
+		strings.Join(weightPrint, ":") + "," +
 		strings.Join(actual.missing, "|")
 }
