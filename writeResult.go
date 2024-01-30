@@ -47,7 +47,7 @@ func writeResult(result *[]WordWeight) {
 	}
 
 	for missing := range missingContainer {
-		_, err = missingLog.WriteString(missing + "\n")
+		_, err = missingLog.WriteString("\"" + missing + "\"\n")
 		if err != nil {
 			log.Fatal(err)
 		}

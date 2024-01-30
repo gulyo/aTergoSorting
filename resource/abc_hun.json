@@ -1,110 +1,192 @@
 {
-  "weight": [0],
+  "weight": [
+    0
+  ],
   "literals": {
     "A": {
-      "weight": [10]
+      "weight": [
+        10
+      ]
     },
     "Á": {
-      "weight": [20]
+      "weight": [
+        20
+      ]
+    },
+    "Ä": {
+      "weight": [
+        25
+      ]
     },
     "B": {
-      "weight": [30]
+      "weight": [
+        30
+      ]
     },
     "C": {
-      "weight": [40]
+      "weight": [
+        40
+      ]
+    },
+    "Ć": {
+      "weight": [
+        55
+      ]
     },
     "D": {
-      "weight": [60]
+      "weight": [
+        60
+      ]
     },
     "E": {
-      "weight": [90]
+      "weight": [
+        90
+      ]
     },
     "É": {
-      "weight": [100]
+      "weight": [
+        100
+      ]
     },
     "F": {
-      "weight": [110]
+      "weight": [
+        110
+      ]
     },
     "G": {
-      "weight": [120]
+      "weight": [
+        120
+      ]
     },
     "H": {
-      "weight": [140]
+      "weight": [
+        140
+      ]
     },
     "I": {
-      "weight": [150]
+      "weight": [
+        150
+      ]
     },
     "Í": {
-      "weight": [160]
+      "weight": [
+        160
+      ]
     },
     "J": {
-      "weight": [170]
+      "weight": [
+        170
+      ]
     },
     "K": {
-      "weight": [180]
+      "weight": [
+        180
+      ]
     },
     "L": {
-      "weight": [190]
+      "weight": [
+        190
+      ]
     },
     "M": {
-      "weight": [210]
+      "weight": [
+        210
+      ]
     },
     "N": {
-      "weight": [220]
+      "weight": [
+        220
+      ]
     },
     "O": {
-      "weight": [240]
+      "weight": [
+        240
+      ]
     },
     "Ó": {
-      "weight": [250]
+      "weight": [
+        250
+      ]
     },
     "Ö": {
-      "weight": [260]
+      "weight": [
+        260
+      ]
     },
     "Ő": {
-      "weight": [270]
+      "weight": [
+        270
+      ]
     },
     "P": {
-      "weight": [280]
+      "weight": [
+        280
+      ]
     },
     "Q": {
-      "weight": [290]
+      "weight": [
+        290
+      ]
     },
     "R": {
-      "weight": [300]
+      "weight": [
+        300
+      ]
     },
     "S": {
-      "weight": [310]
+      "weight": [
+        310
+      ]
     },
     "T": {
-      "weight": [330]
+      "weight": [
+        330
+      ]
     },
     "U": {
-      "weight": [350]
+      "weight": [
+        350
+      ]
     },
     "Ú": {
-      "weight": [360]
+      "weight": [
+        360
+      ]
     },
     "Ü": {
-      "weight": [370]
+      "weight": [
+        370
+      ]
     },
     "Ű": {
-      "weight": [380]
+      "weight": [
+        380
+      ]
     },
     "V": {
-      "weight": [390]
+      "weight": [
+        390
+      ]
     },
     "W": {
-      "weight": [400]
+      "weight": [
+        400
+      ]
     },
     "X": {
-      "weight": [410]
+      "weight": [
+        410
+      ]
     },
     "Y": {
-      "weight": [420]
+      "weight": [
+        420
+      ]
     },
     "Z": {
-      "weight": [430]
+      "weight": [
+        430
+      ]
     }
   }
 }
