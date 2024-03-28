@@ -5,14 +5,19 @@ import (
 	"os"
 )
 
-func createResult() (*os.File, *os.File, *os.File, func()) {
+func createResult() (*os.File, *os.File, *os.File, *os.File, func()) {
 	// create output file
 	out, err := os.OpenFile(os.Args[3]+".csv", os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
+	// create pure output file
+	pure, err := os.OpenFile(os.Args[3]+"_pure.txt", os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
+	if err != nil {
+		log.Fatal(err)
+	}
 	// create file for missing characters
-	missing, errUnknown := os.OpenFile(os.Args[3]+"_unknown.csv", os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
+	missing, errUnknown := os.OpenFile(os.Args[3]+"_unknown.txt", os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
 	if errUnknown != nil {
 		log.Fatal(errUnknown)
 	}
@@ -28,6 +33,10 @@ func createResult() (*os.File, *os.File, *os.File, func()) {
 		if err != nil {
 			log.Fatal(err)
 		}
+		err = pure.Close()
+		if err != nil {
+			log.Fatal(err)
+		}
 		err = missing.Close()
 		if err != nil {
 			log.Fatal(err)
@@ -38,5 +47,5 @@ func createResult() (*os.File, *os.File, *os.File, func()) {
 		}
 	}
 
-	return out, missing, errorLog, closeFunc
+	return out, pure, missing, errorLog, closeFunc
 }

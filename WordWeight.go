@@ -42,13 +42,21 @@ func (actual WordWeight) lessThan(wordB WordWeight) bool {
 	return false
 }
 
-func (actual WordWeight) String() string {
+func (actual WordWeight) String(rPad bool) string {
 	var weightPrint []string = make([]string, len(actual.weights))
 	for i := range actual.weights {
 		weightPrint[i] = fmt.Sprintf("%.0f", actual.weights[i])
 	}
-	return fmt.Sprintf("%"+strconv.Itoa(PrintWidthRowNum)+"d", actual.word.index) + "," +
-		fmt.Sprintf("%"+strconv.Itoa(PrintWidthWord)+"s", string(actual.word.text)) + "," +
-		strings.Join(weightPrint, ":") + "," +
-		strings.Join(actual.missing, "|")
+	if rPad {
+		return fmt.Sprintf("%"+strconv.Itoa(PrintWidthRowNum)+"d", actual.word.index) + "," +
+			fmt.Sprintf("%"+strconv.Itoa(PrintWidthWord)+"s", string(actual.word.text)) + "," +
+			strings.Join(weightPrint, ":") + "," +
+			strings.Join(actual.missing, "|")
+	} else {
+		return fmt.Sprintf(strconv.Itoa(actual.word.index)) + "," +
+			fmt.Sprintf(string(actual.word.text)) + "," +
+			strings.Join(weightPrint, ":") + "," +
+			strings.Join(actual.missing, "|")
+	}
+
 }
