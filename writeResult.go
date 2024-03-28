@@ -9,18 +9,18 @@ func writeResult(result *[]WordWeight) {
 
 	missingContainer := make(map[string]bool)
 
-	out, pure, missingLog, errorLog, closeFn := createResult()
+	analytics, out, missingLog, errorLog, closeFn := createResult()
 
 	var err error
 
 	defer func(out *os.File) {
 		closeFn()
-	}(out)
+	}(analytics)
 
 	//resultHeader := fmt.Sprintf("%"+strconv.Itoa(PrintWidthRowNum+1)+
 	//	"s%"+strconv.Itoa(PrintWidthWord+1)+"s%s", "#,", "Név,", " Súlyok, Ismeretlen Betűk\n")
 	resultHeader := "#,Név,Súlyok,Ismeretlen Betűk\n"
-	_, err = out.WriteString(resultHeader)
+	_, err = analytics.WriteString(resultHeader)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -30,11 +30,11 @@ func writeResult(result *[]WordWeight) {
 	}
 
 	for _, weighted := range *result {
-		_, err = out.WriteString(weighted.String(false) + "\n")
+		_, err = analytics.WriteString(weighted.String(false) + "\n")
 		if err != nil {
 			log.Fatal(err)
 		}
-		_, err = pure.WriteString(weighted.word.text + "\n")
+		_, err = out.WriteString(weighted.word.text + "\n")
 		if err != nil {
 			log.Fatal(err)
 		}

@@ -6,13 +6,13 @@ import (
 )
 
 func createResult() (*os.File, *os.File, *os.File, *os.File, func()) {
-	// create output file
-	out, err := os.OpenFile(os.Args[3]+".csv", os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
+	// create analytics output file
+	analytics, err := os.OpenFile(os.Args[3]+"_analytics.csv", os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
-	// create pure output file
-	pure, err := os.OpenFile(os.Args[3]+"_pure.txt", os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
+	// create out output file
+	out, err := os.OpenFile(os.Args[3]+".txt", os.O_CREATE|os.O_WRONLY|os.O_TRUNC, 0644)
 	if err != nil {
 		log.Fatal(err)
 	}
@@ -29,11 +29,11 @@ func createResult() (*os.File, *os.File, *os.File, *os.File, func()) {
 	}
 
 	closeFunc := func() {
-		err := out.Close()
+		err := analytics.Close()
 		if err != nil {
 			log.Fatal(err)
 		}
-		err = pure.Close()
+		err = out.Close()
 		if err != nil {
 			log.Fatal(err)
 		}
@@ -47,5 +47,5 @@ func createResult() (*os.File, *os.File, *os.File, *os.File, func()) {
 		}
 	}
 
-	return out, pure, missing, errorLog, closeFunc
+	return analytics, out, missing, errorLog, closeFunc
 }
